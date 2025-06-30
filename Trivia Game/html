@@ -2,19 +2,19 @@
 <html>
 <head>
     <title>Trivia Game</title>
-    <!-- Link to CSS stylesheet -->
+    <!-- Link to external CSS for styling the game -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Main container for the trivia game UI -->
+    <!-- Main container for all trivia game content -->
     <div class="container">
-        <!-- Game title -->
+        <!-- Game title heading -->
         <h1>Trivia Game</h1>
 
-        <!-- Area where the current trivia question is displayed -->
+        <!-- Area where questions will appear -->
         <h2 id="question"></h2>
 
-        <!-- Buttons for multiple choice answers -->
+        <!-- Answer choice buttons -->
         <div id="choices">
             <button id="choice1" onclick="checkAnswer(this)"></button>
             <button id="choice2" onclick="checkAnswer(this)"></button>
@@ -22,11 +22,14 @@
             <button id="choice4" onclick="checkAnswer(this)"></button>
         </div>
 
-        <!-- Displays result after quiz ends -->
+        <!-- Final score or feedback display -->
         <div id="result"></div>
+
+        <!-- Restart game button, hidden until game ends -->
+        <button id="restartBtn" onclick="restartGame()" style="display: none;">Restart Game</button>
     </div>
 
-    <!-- Link to JavaScript file-->
+    <!-- Link to external JavaScript file for game functionality -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,88 @@
+// Array of trivia questions
+const questions = [
+    "What's the capital of France?",
+    "Who painted the Mona Lisas?",
+    "Which planet is known as the Red Planet?",
+    "What is the largest mammal in the world?",
+    "Which language is primarily spoken in Brazil?",
+    "What is the chemical symbol for water?",
+    "Who wrote 'Romeo and Juliet'?"
+];
+
+// Array of answer choices for each question
+const choicesArray = [
+    ["Paris", "London", "Berlin", "Madrid"],
+    ["Van Gogh", "Picasso", "Da Vinci", "Rembrandt"],
+    ["Mars", "Venus", "Jupiter", "Saturn"],
+    ["Elephant", "Blue Whale", "Giraffe", "Shark"],
+    ["Spanish", "Portuguese", "English", "French"],
+    ["H2O", "O2", "CO2", "NaCl"],
+    ["Shakespeare", "Dickens", "Austen", "Hemingway"]
+];
+
+// Array of correct answers for each question
+const correctAnswers = [
+    "Paris",
+    "Da Vinci",
+    "Mars",
+    "Blue Whale",
+    "Portuguese",
+    "H2O",
+    "Shakespeare"
+];
+
+let currentQuestionIndex = 0; // Tracks which question the player is on
+let score = 0; // Tracks how many correct answers the player has
+
+// Function to display the current question and its answer choices
+function displayQuestion() {
+    if (currentQuestionIndex < questions.length) {
+        // Set the current question text
+        document.getElementById('question').innerHTML = questions[currentQuestionIndex];
+
+        // Loop through and set each button's text and value
+        for (let i = 0; i < 4; i++) {
+            const btn = document.getElementById(`choice${i+1}`);
+            btn.innerHTML = choicesArray[currentQuestionIndex][i];
+            btn.value = choicesArray[currentQuestionIndex][i];
+            btn.style.display = 'inline-block'; // Ensure the buttons are visible
+        }
+
+        // Clear previous result and hide restart button
+        document.getElementById('result').innerHTML = "";
+        document.getElementById('restartBtn').style.display = 'none';
+    } else {
+        // Game over: show the player's score
+        document.getElementById('result').innerHTML =
+            `You scored ${score} out of ${questions.length}!`;
+
+        // Hide the question and choices
+        document.getElementById('question').innerHTML = "";
+        for (let i = 0; i < 4; i++) {
+            document.getElementById(`choice${i+1}`).style.display = 'none';
+        }
+
+        // Show the restart button
+        document.getElementById('restartBtn').style.display = 'inline-block';
+    }
+}
+
+// Function to handle a player's answer
+function checkAnswer(btn) {
+    // If the chosen answer matches the correct answer, increment score
+    if (btn.value === correctAnswers[currentQuestionIndex]) {
+        score++;
+    }
+    currentQuestionIndex++; // Move to next question
+    displayQuestion(); // Refresh question display
+}
+
+// Function to reset the game state and start over
+function restartGame() {
+    currentQuestionIndex = 0;
+    score = 0;
+    displayQuestion();
+}
+
+// Initial call to start the game
+displayQuestion();
